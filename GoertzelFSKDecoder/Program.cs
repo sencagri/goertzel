@@ -10,6 +10,13 @@ namespace GoertzelFSKDecoder
     {
         static void Main(string[] args)
         {
+            WavReader wr = new WavReader();
+
+            var filePath = args[0];
+            if (filePath != null)
+            {
+                
+            }
         }
     }
 }
