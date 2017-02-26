@@ -48,9 +48,9 @@ namespace GoertzelFSKDecoder
                     return sonuç;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Belirtilen dosya okunamadı!");
+                throw ex;
             }
 
         }

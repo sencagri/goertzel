@@ -11,17 +11,17 @@ namespace GoertzelFSKDecoder
         static void Main(string[] args)
         {
             WavReader wr = new WavReader();
-            
+
             wr.FilePath = args[0];
             byte[] fileData = null;
+
             if (!string.IsNullOrEmpty(wr.FilePath))
             {
                 fileData = wr.ReadFile();
             }
 
             // trim all the zeros from data
-            fileData.ProcessArray();
-
+            fileData  = fileData.ProcessArray();
 
         }
     }

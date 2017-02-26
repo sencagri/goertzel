@@ -14,11 +14,13 @@ namespace GoertzelFSKDecoder
         private static int start = 0;
         private static int end = 0;
 
-        public static void ProcessArray(this byte[] byteArray)
+        public static byte[] ProcessArray(this byte[] byteArray)
         {
             FindTheStartOfByteArray(byteArray);
-            FindTheEndOfByteArray(byteArray,start);
-            ArrayCopyFromIndex(byteArray, start, end);
+            FindTheEndOfByteArray(byteArray, start);
+            var result = ArrayCopyFromIndex(byteArray, start, end) ?? new byte[0];
+
+            return result;
         }
 
         public static void FindTheStartOfByteArray(this byte[] byteArray, int startIndex = 0)
