@@ -23,6 +23,7 @@ namespace GoertzelFSKDecoder
             // trim all the zeros from data
             fileData  = fileData.ProcessArray();
 
+
         }
     }
 }
