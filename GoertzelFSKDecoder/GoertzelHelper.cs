@@ -23,6 +23,4 @@ namespace GoertzelFSKDecoder
             coeff = 2 * cosine;
         }
     }
-
-}
 }

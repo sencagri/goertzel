@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace GoertzelFSKDecoder
     class WavReader
     {
         public string FilePath { get; set; }
-
+        public int SampleRate { get; set; }
         public byte[] ReadFile()
         {
             try
@@ -45,6 +46,8 @@ namespace GoertzelFSKDecoder
                     {
                         sonuç = new byte[0];
                     }
+
+                    SampleRate = sampleRate;
                     return sonuç;
                 }
             }

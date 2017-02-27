@@ -23,7 +23,17 @@ namespace GoertzelFSKDecoder
             // trim all the zeros from data
             fileData  = fileData.ProcessArray();
 
+            GoertzelDecoder gd = new GoertzelDecoder();
+            gd.SampleRate = wr.SampleRate;
+            gd.TargetFreqs.Add(1200);
+            gd.TargetFreqs.Add(2200);
 
+            for (int i = 0; i < 18; i++)
+            {
+                gd.Sample.Add(fileData[i]);
+            }
+            
+            gd.RunGoertzel();
         }
     }
 }

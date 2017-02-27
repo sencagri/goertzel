@@ -9,15 +9,16 @@ namespace GoertzelFSKDecoder
 {
     public class GoertzelDecoder
     {
-        public int[] TargetFreqs { get; set; }
+        public List<int> TargetFreqs { get; set; }
 
         private Dictionary<int, int> TargetFreqsDict = new Dictionary<int, int>();
-        public int[] Sample { get; set; }
+
+        public List<int> Sample { get; set; }
         public int SampleRate { get; set; }
 
-        public GoertzelHelper[] GoertzelHelpers { get; set; }
+        public List<GoertzelHelper> GoertzelHelpers { get; set; }
 
-        public double[] FreqPowerResult { get; set; }
+        public List<double> FreqPowerResult { get; set; }
 
         // internal var.s for calculation
         private int sampleCount = int.MinValue;
@@ -28,24 +29,30 @@ namespace GoertzelFSKDecoder
 
         public GoertzelDecoder()
         {
-            // calculate sampleCount 
-            CalculateInternalVars();
-
-            // add all frequencies to dictionary and calculate nessesary constans to prevent continious calculation of constants
-            for (int i = 0; i < TargetFreqs.Length; i++)
-            {
-                TargetFreqsDict.Add(i, TargetFreqs[i]);
-                GoertzelHelpers[i] = new GoertzelHelper(SampleRate, sampleCount, TargetFreqsDict[i]);
-            }
+            GoertzelHelpers = new List<GoertzelHelper>();
+            Sample = new List<int>();
+            TargetFreqs = new List<int>();
+            FreqPowerResult = new List<double>();
         }
         private void CalculateInternalVars()
         {
             // calculate sample count 
-            sampleCount = Sample.Length;
+            sampleCount = Sample.Count;
+            targetFreqCount = TargetFreqs.Count;
         }
 
         public void RunGoertzel()
         {
+            // calculate sampleCount 
+            CalculateInternalVars();
+
+            // add all frequencies to dictionary and calculate nessesary constans to prevent continious calculation of constants
+            for (int i = 0; i < TargetFreqs.Count; i++)
+            {
+                TargetFreqsDict.Add(i, TargetFreqs[i]);
+                GoertzelHelpers.Add(new GoertzelHelper(SampleRate, sampleCount, TargetFreqsDict[i]));
+            }
+
             // check if dict elements is missing or not
             if (TargetFreqsDict.Count == 0)
             {
@@ -86,7 +93,7 @@ namespace GoertzelFSKDecoder
             var mag = Math.Sqrt(real + imag);
 
             // set result to the freqpowerres
-            FreqPowerResult[i] = mag;
+            FreqPowerResult.Add(mag);
         }
 
         private void ResetGoertzel()
