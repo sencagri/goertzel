@@ -13,7 +13,7 @@ namespace GoertzelFSKDecoder
 
         private Dictionary<int, int> TargetFreqsDict = new Dictionary<int, int>();
 
-        public List<int> Sample { get; set; }
+        public List<double> Sample { get; set; }
         public int SampleRate { get; set; }
 
         public List<GoertzelHelper> GoertzelHelpers { get; set; }
@@ -30,7 +30,7 @@ namespace GoertzelFSKDecoder
         public GoertzelDecoder()
         {
             GoertzelHelpers = new List<GoertzelHelper>();
-            Sample = new List<int>();
+            Sample = new List<double>();
             TargetFreqs = new List<int>();
             FreqPowerResult = new List<double>();
         }
@@ -85,13 +85,14 @@ namespace GoertzelFSKDecoder
             }
         }
 
+        Dictionary<int, double> list = new Dictionary<int,double>();
         private void CalculatePower(int i, GoertzelHelper helper)
         {
             // calculate the power of targer freq
             var real = Math.Pow((Q1 - Q2 * helper.cosine), 2);
             var imag = Math.Pow(Q2 * helper.sine, 2);
             var mag = Math.Sqrt(real + imag);
-
+            list.Add(helper.targetFreq, mag);
             // set result to the freqpowerres
             FreqPowerResult.Add(mag);
         }

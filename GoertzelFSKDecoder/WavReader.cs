@@ -12,7 +12,7 @@ namespace GoertzelFSKDecoder
     {
         public string FilePath { get; set; }
         public int SampleRate { get; set; }
-        public byte[] ReadFile()
+        public double[] ReadFile()
         {
             try
             {
@@ -39,16 +39,22 @@ namespace GoertzelFSKDecoder
 
                     int dataID = reader.ReadInt32();
                     int dataSize = reader.ReadInt32();
-
                     var sonuç = reader.ReadBytes(dataSize);
+                    var sonuçPcm = new double[sonuç.Length/2];
+                    for (int i = 0; i < dataSize/2; i++)
+                    {
+                        var sampleValue = BitConverter.ToInt16(sonuç, i*2);
+                        sonuçPcm[i] = sampleValue/32768.0;
+                    }
 
-                    if (sonuç == null)
+
+                    if (sonuçPcm == null)
                     {
                         sonuç = new byte[0];
                     }
 
                     SampleRate = sampleRate;
-                    return sonuç;
+                    return sonuçPcm;
                 }
             }
             catch (Exception ex)

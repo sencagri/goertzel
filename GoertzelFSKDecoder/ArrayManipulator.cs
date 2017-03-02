@@ -14,16 +14,16 @@ namespace GoertzelFSKDecoder
         private static int start = 0;
         private static int end = 0;
 
-        public static byte[] ProcessArray(this byte[] byteArray)
+        public static double[] ProcessArray(this double[] byteArray)
         {
             FindTheStartOfByteArray(byteArray);
             FindTheEndOfByteArray(byteArray, start);
-            var result = ArrayCopyFromIndex(byteArray, start, end) ?? new byte[0];
+            var result = ArrayCopyFromIndex(byteArray, start, end) ?? new double[0];
 
             return result;
         }
 
-        public static void FindTheStartOfByteArray(this byte[] byteArray, int startIndex = 0)
+        public static void FindTheStartOfByteArray(this double[] byteArray, int startIndex = 0)
         {
             var resultIndex = -1;
             var byteArrayLength = byteArray.Length;
@@ -79,7 +79,7 @@ namespace GoertzelFSKDecoder
             }
         }
 
-        private static void FindTheEndOfByteArray(this byte[] byteArray, int startIndex = 0)
+        private static void FindTheEndOfByteArray(this double[] byteArray, int startIndex = 0)
         {
             var resultIndex = -1;
             var byteArrayLength = byteArray.Length;
@@ -95,18 +95,21 @@ namespace GoertzelFSKDecoder
 
                     for (int j = startIndex + 1; j <= startIndex + valueObserver + 1; j++)
                     {
-                        if (byteArray[j] != 0)
+                        if (j < byteArrayLength)
                         {
-                            values++;
+                            if (byteArray[j] != 0)
+                            {
+                                values++;
+                            }
                         }
-                    }
-                    if (values != 0)
-                    {
-                        i = startIndex + valueObserver;
-                    }
-                    else
-                    {
-                        resultIndex = pos;
+                        if (values != 0)
+                        {
+                            i = startIndex + valueObserver;
+                        }
+                        else
+                        {
+                            resultIndex = pos;
+                        }
                     }
                 }
                 if (resultIndex != -1)
@@ -118,9 +121,13 @@ namespace GoertzelFSKDecoder
             }
         }
 
-        private static byte[] ArrayCopyFromIndex(byte[] byteArray, int startIndex, int stopIndex)
+        private static double[] ArrayCopyFromIndex(double[] byteArray, int startIndex, int stopIndex)
         {
-            List<byte> sonuç = new List<byte>();
+            List<double> sonuç = new List<double>();
+            if (stopIndex == 0)
+            {
+                stopIndex = byteArray.Length;
+            }
             for (int i = startIndex; i < stopIndex; i++)
             {
                 sonuç.Add(byteArray[i]);

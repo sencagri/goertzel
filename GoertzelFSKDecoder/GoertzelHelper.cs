@@ -8,19 +8,29 @@ namespace GoertzelFSKDecoder
 {
     public class GoertzelHelper
     {
-        public int k = int.MinValue;
-        public double omega = float.MinValue;
-        public double cosine = float.MinValue;
-        public double sine = float.MinValue;
-        public double coeff = float.MinValue;
+        public double k = int.MinValue;
+        public double omega = double.MinValue;
+        public double cosine = double.MinValue;
+        public double sine = double.MinValue;
+        public double coeff = double.MinValue;
+        public int targetFreq = int.MinValue;
 
         public GoertzelHelper(int sampleRate, int sampleCount, int targetFreq)
         {
-            k = (int)(0.5 + sampleCount * (double)targetFreq / sampleRate);
-            omega = (float)(2 * Math.PI * k / sampleCount);
+            this.targetFreq = targetFreq;
+            
+            k = 0.5 + (1.0*sampleCount*targetFreq/sampleRate);
+            omega = (double)(2 * Math.PI * k / sampleCount);
             sine = Math.Sin(omega);
             cosine = Math.Cos(omega);
             coeff = 2 * cosine;
+            
+            /*
+            omega = 2*Math.PI*targetFreq*1.0/sampleRate;
+            sine = Math.Sin(omega);
+            cosine = Math.Cos(omega);
+            coeff = 2 * cosine;
+            */
         }
     }
 }

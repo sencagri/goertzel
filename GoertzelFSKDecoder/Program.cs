@@ -11,9 +11,11 @@ namespace GoertzelFSKDecoder
         static void Main(string[] args)
         {
             WavReader wr = new WavReader();
+            var filePath = @"C:\Users\Ebubekir Çağrı ŞEN\OneDrive\Ebubekir\Projeler\Elektronik\CallerID\YardımcıProgramlarVeÖrnekDosyalar\fskgen\samples\test-callerid.wav";
+            wr.FilePath = filePath;
 
-            wr.FilePath = args[0];
-            byte[] fileData = null;
+            // wr.FilePath = args[0];
+            double[] fileData = null;
 
             if (!string.IsNullOrEmpty(wr.FilePath))
             {
@@ -21,18 +23,26 @@ namespace GoertzelFSKDecoder
             }
 
             // trim all the zeros from data
-            fileData  = fileData.ProcessArray();
+            fileData = fileData.ProcessArray();
 
             GoertzelDecoder gd = new GoertzelDecoder();
             gd.SampleRate = wr.SampleRate;
+            gd.TargetFreqs.Add(50);
+            gd.TargetFreqs.Add(100);
+            gd.TargetFreqs.Add(200);
+            gd.TargetFreqs.Add(350);
+            gd.TargetFreqs.Add(440);
+            gd.TargetFreqs.Add(600);
+            gd.TargetFreqs.Add(700);
+            gd.TargetFreqs.Add(880);
+            gd.TargetFreqs.Add(1000);
             gd.TargetFreqs.Add(1200);
-            gd.TargetFreqs.Add(2200);
 
-            for (int i = 0; i < 18; i++)
+            for (int i = 0; i < 200; i++)
             {
                 gd.Sample.Add(fileData[i]);
             }
-            
+
             gd.RunGoertzel();
         }
     }
