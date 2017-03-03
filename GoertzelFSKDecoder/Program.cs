@@ -11,7 +11,7 @@ namespace GoertzelFSKDecoder
         static void Main(string[] args)
         {
             WavReader wr = new WavReader();
-            var filePath = @"C:\Users\Ebubekir Çağrı ŞEN\OneDrive\Ebubekir\Projeler\Elektronik\CallerID\YardımcıProgramlarVeÖrnekDosyalar\fskgen\samples\test-callerid.wav";
+            var filePath = @"C:\Users\Ebubekir Çağrı ŞEN\OneDrive\Ebubekir\Projeler\Elektronik\CallerID\YardımcıProgramlarVeÖrnekDosyalar\fskgen\samples\test1200hz.wav";
             wr.FilePath = filePath;
 
             // wr.FilePath = args[0];
@@ -37,8 +37,11 @@ namespace GoertzelFSKDecoder
             gd.TargetFreqs.Add(880);
             gd.TargetFreqs.Add(1000);
             gd.TargetFreqs.Add(1200);
+            gd.TargetFreqs.Add(2200);
+            gd.TargetFreqs.Add(2400);
+            gd.TargetFreqs.Add(4000);
 
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 20; i++)
             {
                 gd.Sample.Add(fileData[i]);
             }

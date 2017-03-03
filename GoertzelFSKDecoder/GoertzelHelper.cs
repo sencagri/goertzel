@@ -19,18 +19,18 @@ namespace GoertzelFSKDecoder
         {
             this.targetFreq = targetFreq;
             
+            /*
             k = 0.5 + (1.0*sampleCount*targetFreq/sampleRate);
             omega = (double)(2 * Math.PI * k / sampleCount);
             sine = Math.Sin(omega);
             cosine = Math.Cos(omega);
             coeff = 2 * cosine;
+            */
             
-            /*
             omega = 2*Math.PI*targetFreq*1.0/sampleRate;
             sine = Math.Sin(omega);
             cosine = Math.Cos(omega);
             coeff = 2 * cosine;
-            */
         }
     }
 }
