@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoertzelFSKDecoder", "Goert
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goertzel", "Goertzel\Goertzel.csproj", "{88DF9173-D7AC-44B2-B20B-1F9C907412C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoertzelCallerIdDecoder", "GoertzelCallerIdDecoder\GoertzelCallerIdDecoder.csproj", "{73BC86E9-8992-405E-954E-71A94E89CF76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{88DF9173-D7AC-44B2-B20B-1F9C907412C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88DF9173-D7AC-44B2-B20B-1F9C907412C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88DF9173-D7AC-44B2-B20B-1F9C907412C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73BC86E9-8992-405E-954E-71A94E89CF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BC86E9-8992-405E-954E-71A94E89CF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BC86E9-8992-405E-954E-71A94E89CF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BC86E9-8992-405E-954E-71A94E89CF76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
