@@ -48,8 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayManipulator.cs" />
-    <Compile Include="GoertzelDecoder.cs" />
-    <Compile Include="GoertzelHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WavReader.cs" />
@@ -57,6 +55,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Goertzel\Goertzel.csproj">
+      <Project>{88DF9173-D7AC-44B2-B20B-1F9C907412C2}</Project>
+      <Name>Goertzel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
