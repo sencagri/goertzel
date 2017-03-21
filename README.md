@@ -3,7 +3,12 @@
 I created this repo to share my expericence with goertzel algorithm, caller id, signal modulation(especially fsk) and etc. I will share all my work in github. You will see the the whole development with all the nudity.
 
 ## Quick test.
-If you want to test how it decodes signal data coming from just download the repo open it with visual studio (created in vs2015) select GoertzelFSKDecoder as start-up project. In the code, modify the constructor method of Form1.
+If you want to test how it decodes signal data coming from mic here are the steps:
+1.)Download the repo
+2.)Open it with visual studio (created in vs2015)
+3.)Select GoertzelFSKDecoder as start-up project.
+4.)In the code, modify the constructor method of Form1.
+
     
         public Form1()
         {
@@ -22,6 +27,7 @@ If you want to test how it decodes signal data coming from just download the rep
 
             gd.RunGoertzel();
         }
+        
 
 You can add the your desired frequencies to test the algorithm.
 
