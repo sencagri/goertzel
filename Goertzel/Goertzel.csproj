@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Event\DecodingEvents.cs" />
     <Compile Include="GoertzelDecoder.cs" />
     <Compile Include="GoertzelHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

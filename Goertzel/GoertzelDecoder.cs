@@ -5,11 +5,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Goertzel.Event;
 
 namespace GoertzelFSKDecoder
 {
     public class GoertzelDecoder
     {
+        // event and delegate definitions for better result showing 
+        public delegate void OnGoertzelDecodedEventHandler(object sender, DecodingEvents e);
+        public event OnGoertzelDecodedEventHandler OnGoertzelDecoded;
+
         public List<double> Sample { get; set; }
         public int SampleRate { get; set; }
         public List<int> TargetFreqs { get; set; }
@@ -93,7 +98,8 @@ namespace GoertzelFSKDecoder
                 CalculatePower(i, helper);
                 ResetGoertzel();
             }
-            FreqPowerResult.Clear();
+            // raise the  event after calculating power values 
+            OnGoertzelDecoded(this, new Goertzel.Event.DecodingEvents() {FreqPowerResult = this.FreqPowerResult});
             Finished = true;
         }
 
