@@ -4,10 +4,10 @@ I created this repo to share my expericence with goertzel algorithm, caller id, 
 
 ## Quick test.
 If you want to test how it decodes signal data coming from mic here are the steps:
-1.)Download the repo
-2.)Open it with visual studio (created in vs2015)
-3.)Select GoertzelFSKDecoder as start-up project.
-4.)In the code, modify the constructor method of Form1.
+1. Download the repo
+2. Open it with visual studio (created in vs2015)
+3. Select GoertzelFSKDecoder as start-up project.
+4. In the code, modify the constructor method of Form1.
 
     
         public Form1()
